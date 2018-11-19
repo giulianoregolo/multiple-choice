@@ -10,23 +10,19 @@ class Multiplechoice{
     private $cant;
     private $preguntasExamen;
 
-    public function __construct($cant = 12) {   
+    public function __construct($cant) {   
         $this->cant = $cant;
         $this->pregun = Yaml::parseFile('/Preguntas/preguntas.yml');
-        $this->pregun = shuffle($this->pregun);
-        while($cant>0){
-            $this->preguntasExamen = $this->pregun[$this->cant];
-            $cant--;
-        }
-
     }
 
+    
+    
     public function obtenerpreguntas($numero){
         return $this->preguntasExamen[$numero];
     }
 
     public function opciones($pregunta){
-
+        
     }
 
 
