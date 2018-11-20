@@ -11,6 +11,8 @@ class Multiplechoice{
     private $descipciones;
     private $ocultartodasAnteriores;
     private $ocultarNingunatodasAnteriores;
+    private $respuesta_incorrectas;
+    private $respuestas_correctas;
 
     public function __construct($cant) {   
         $this->cant = $cant;
@@ -43,8 +45,8 @@ class Multiplechoice{
     public function opciones($cant){
         
         if ($this->respuesta_incorrectas[$cant] = []){
-            $this->respuest_correcta[$cant+1] ='Todas son correctas'; 
-            
+            $this->respuestas_correcta[$cant+1] ='Todas son correctas'; 
+
         }
         if ($this->respuesta_correctas[$cant] = []){
             $this->respuest_correcta[$cant+1] ='Ninguna es correcta'; 
