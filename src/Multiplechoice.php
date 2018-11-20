@@ -13,6 +13,7 @@ class Multiplechoice{
     private $ocultarNingunatodasAnteriores;
     private $respuesta_incorrectas;
     private $respuestas_correctas;
+    private $preguntasExamen;
 
     public function __construct($cant) {   
         $this->cant = $cant;
@@ -39,7 +40,7 @@ class Multiplechoice{
             }
         $contador++;
         }
-
+        return $contador;
     }
 
     public function opciones($cant){
@@ -51,12 +52,25 @@ class Multiplechoice{
         if ($this->respuesta_correctas[$cant] = []){
             $this->respuest_correcta[$cant+1] ='Ninguna es correcta'; 
         }
+        shuffle($this->respuestas_correctas[$cant]);
+        shuffle($this->respuesta_incorrectas[$cant]);
+        $this->preguntasExamen[$cant] = array_merge($this->respuestas_correctas,$this->respuesta_incorrectas);
 
 
+        if(!($this->ocultarNingunatodasAnteriores[$cant])){
+           array_push($this->preguntasExamen[$cant],'Ninguna de las anteriores');            
+        }
+        if(!($this->ocultartodasAnteriores[$cant])){
+            array_push($this->preguntasExamen[$cant],'Todas de las anteriores');            
+        }
     }
 
     public function CrearTema($pregunta){
-        
+        $contador = $this->Generarpregunta();
+        while($contador > $numero){
+        $this->opciones($numero);
+        $numero++;
+        }
     }
 
     public function obtenerpreguntas($numero){
