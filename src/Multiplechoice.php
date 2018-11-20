@@ -15,8 +15,10 @@ class Multiplechoice{
         $this->pregun = Yaml::parseFile('/Preguntas/preguntas.yml');
     }
 
-    
-    
+    public function CrearTema($pregunta){
+        
+    }
+
     public function obtenerpreguntas($numero){
         return $this->preguntasExamen[$numero];
     }
