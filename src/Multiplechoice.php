@@ -50,15 +50,15 @@ class Multiplechoice{
 		$letras = [];
 		$i = 0;
 		foreach ($this->respuestas_correcta as $correctas ) {
-            $letras[$i] = $this->abc[array_search($correctas[$i], $this->preguntasExamen[])];
+            $letras[$i] = $this->abc[array_search($correctas[$i], $this->preguntasExamen[i])];
             $i++;
 		}
 		return $letras;
 	}
 
     
-    public function opciones($numero){
-         
+    public function opciones(){
+        for($numero = 0;$numero < $this->cant;$numero++){ 
             if ($this->respuesta_incorrectas[$numero] = []){
                 $this->respuesta_incorrectas[$numero] = $this->respuesta_correctas[$numero];
                 $this->respuesta_correctas[$numero] = [];
@@ -70,11 +70,10 @@ class Multiplechoice{
                 }
                 shuffle($this->respuestas_correcta[$numero]);
                 shuffle($this->respuesta_incorrectas[$numero]);
-                $this->preguntasExamen[$numero] = array_merge($this->respuestas_correcta,$this->respuesta_incorrectas);
-                
-                return $this->preguntasExamen[$numero];
+                $this->preguntasExamen[$numero] = array_merge($this->respuestas_correcta[$numero],$this->respuesta_incorrectas[$numero]);
+            
             }
-            if ($this->respuesta_correctas[$numero] = []){
+            elseif ($this->respuesta_correctas[$numero] = []){
                 
                 if(!($this->ocultarNingunatodasAnteriores[$numero])){
                     array_push($this->respuesta_correctas[$numero],'Ninguna de las anteriores');            
@@ -85,12 +84,23 @@ class Multiplechoice{
 
                 shuffle($this->respuestas_correcta[$numero]);
                 shuffle($this->respuesta_incorrectas[$numero]);
-                $this->preguntasExamen[$numero] = array_merge($this->respuestas_correcta,$this->respuesta_incorrectas);
+                $this->preguntasExamen[$numero] = array_merge($this->respuestas_correcta[$numero],$this->respuesta_incorrectas[$numero]);
 
-                return $this->preguntasExamen[$numero];
             }
+        }
+        return $this->preguntasExamen;
     }
     
+	public function crearEvaluacion($tema){
 
+
+
+
+		$loader = new Twig_Loader_Filesystem('templates');
+		$twig = new Twig_Environment($loader);
+		$templateAlumn = $twig->load('alumno.html');
+		//Render del HTML con las variables
+		file_put_contents('evaluacionTema'.$tema.'.html', $templateAlumn->render(array('preguntas' => $this->preguntasExamen, 'tema' => $tema)));
+	}
 
 }
