@@ -50,7 +50,7 @@ class Multiplechoice{
 		$letras = [];
 		$i = 0;
 		foreach ($this->respuestas_correcta as $correctas ) {
-            $letras[$i] = $this->abc[array_search($correctas[$i], $this->respuestas)];
+            $letras[$i] = $this->abc[array_search($correctas[$i], $this->preguntasExamen[])];
             $i++;
 		}
 		return $letras;
@@ -60,35 +60,35 @@ class Multiplechoice{
     public function opciones($numero){
          
             if ($this->respuesta_incorrectas[$numero] = []){
+                $this->respuesta_incorrectas[$numero] = $this->respuesta_correctas[$numero];
+                $this->respuesta_correctas[$numero] = [];
+                if(!($this->ocultarNingunatodasAnteriores[$numero])){
+                    array_push($this->respuesta_incorrectas[$numero],'Ninguna de las anteriores');            
+                }
+                if(!($this->ocultartodasAnteriores[$numero])){
+                    array_push($this->respuesta_correctas[$numero],'Todas de las anteriores');            
+                }
+                shuffle($this->respuestas_correcta[$numero]);
+                shuffle($this->respuesta_incorrectas[$numero]);
+                $this->preguntasExamen[$numero] = array_merge($this->respuestas_correcta,$this->respuesta_incorrectas);
                 
-
+                return $this->preguntasExamen[$numero];
             }
             if ($this->respuesta_correctas[$numero] = []){
-                array_push($this->respuesta_incorrectas[$numero],'Todas de las anteriores'); 
+                
+                if(!($this->ocultarNingunatodasAnteriores[$numero])){
+                    array_push($this->respuesta_correctas[$numero],'Ninguna de las anteriores');            
+                }
+                if(!($this->ocultartodasAnteriores[$numero])){
+                    array_push($this->respuesta_incorrectas[$numero],'Todas de las anteriores');            
+                }
+
+                shuffle($this->respuestas_correcta[$numero]);
+                shuffle($this->respuesta_incorrectas[$numero]);
+                $this->preguntasExamen[$numero] = array_merge($this->respuestas_correcta,$this->respuesta_incorrectas);
+
+                return $this->preguntasExamen[$numero];
             }
-            shuffle($this->respuestas_correcta[$numero]);
-            shuffle($this->respuesta_incorrectas[$numero]);
-            $this->preguntasExamen[$numero] = array_merge($this->respuestas_correcta,$this->respuesta_incorrectas);
-
-
-            if(!($this->ocultarNingunatodasAnteriores[$numero])){
-            array_push($this->preguntasExamen[$numero],'Ninguna de las anteriores');            
-            }
-            if(!($this->ocultartodasAnteriores[$numero])){
-                array_push($this->preguntasExamen[$numero],'Todas de las anteriores');            
-            }
-        
-        return $this->preguntasExamen[$numero];
-    }
-
-
-
-    public function crearEvaluacion($preguntas, $tema){
-		$loader = new Twig_Loader_Filesystem('templates');
-		$twig = new Twig_Environment($loader);
-		$templateAlumn = $twig->load('alumno.html');
-		//Render del HTML con las variables
-		file_put_contents('exams/EvaluacionTema'.$tema.'.html', $templateAlumn->render(array('preguntas' => $preguntas, 'tema' => $tema)));
     }
     
 
