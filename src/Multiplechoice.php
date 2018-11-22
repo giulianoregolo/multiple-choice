@@ -2,80 +2,95 @@
 
 namespace Multiplechoice;
 
+use Twig_Environment;
+use Twig_Loader_Filesystem;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Parser;
+require_once __DIR__.'/../vendor/autoload.php';
 
 class Multiplechoice{
-    private $pregun;
-    private $cant;
-    private $descipciones;
-    private $ocultartodasAnteriores;
-    private $ocultarNingunatodasAnteriores;
-    private $respuesta_incorrectas;
-    private $respuestas_correctas;
-    private $preguntasExamen;
+    protected $preguntas = [];
+    protected $cant;
+    protected $descipciones = [];
+    protected $ocultartodasAnteriores = [];
+    protected $ocultarNingunatodasAnteriores = [];
+    protected $respuesta_incorrectas = [];
+    protected $respuestas_correcta = [];
+    protected $preguntasExamen = [];
+    protected $cantTemas;
+    protected $abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'];
 
-    public function __construct($cant) {   
+    public function __construct($cant,$test) {   
         $this->cant = $cant;
-        $this->pregun = Yaml::parseFile('/Preguntas/preguntas.yml');
-    }
-
-    public function Generarpregunta(){
-        $contador = 0; 
-        foreach($this->pregun as $pregunta){
-            $descipciones[$contador] = $pregunta[descripcion];
-            $this->respuesta_incorrectas[$contador] = $pregunta[respuestas_incorrectas];
-            $this->respuestas_correctas[$contador] = $pregunta[respuestas_correctas];
-            if (array_key_exists('ocultar_opcion_todas_las_anteriores',$preguntas)){
-                $this->ocultartodasAnteriores[$contador] = true; 
+        $this->preguntas = Yaml::parseFile('/ejemplo/preguntas.yml');
+        $this->cantTemas = $test;
+        foreach($this->preguntas as $pregunta){
+            if($contador > $this->cant ){ 
+                $descipciones[$contador] = $pregunta[descripcion];
+                $this->respuesta_incorrectas[$contador] = $pregunta[respuestas_incorrectas];
+                $this->respuestas_correcta[$contador] = $pregunta[respuestas_correctas];
+                if (array_key_exists('ocultar_opcion_todas_las_anteriores',$preguntas)){
+                    $this->ocultartodasAnteriores[$contador] = true; 
+                }
+                else{
+                    $this->ocultartodasAnteriores[$contador] = false;
+                }
+                if(array_key_exists('ocultas_opcion_ninguna_de_las_anteriores',$pregunta)){
+                    $this->ocultarNingunatodasAnteriores[$contador] = true;
+                }
+                else{
+                    $this->ocultarNingunatodasAnteriores[$contador] = false;
+                }
+                $contador++;
             }
-            else{
-                $this->ocultartodasAnteriores[$contador] = false;
-            }
-            if(array_key_exists('ocultas_opcion_ninguna_de_las_anteriores',$pregunta)){
-                $this->ocultarNingunatodasAnteriores[$contador] = true;
-            }
-            else{
-                $this->ocultarNingunatodasAnteriores[$contador] = false;
-            }
-        $contador++;
         }
-        return $contador;
     }
 
-    public function opciones($cant){
+    public function getCorrectas() {
+		$letras = [];
+		$i = 0;
+		foreach ($this->respuestas_correcta as $correctas ) {
+            $letras[$i] = $this->abc[array_search($correctas[$i], $this->respuestas)];
+            $i++;
+		}
+		return $letras;
+	}
+
+    
+    public function opciones($numero){
+         
+            if ($this->respuesta_incorrectas[$numero] = []){
+                
+
+            }
+            if ($this->respuesta_correctas[$numero] = []){
+                array_push($this->respuesta_incorrectas[$numero],'Todas de las anteriores'); 
+            }
+            shuffle($this->respuestas_correcta[$numero]);
+            shuffle($this->respuesta_incorrectas[$numero]);
+            $this->preguntasExamen[$numero] = array_merge($this->respuestas_correcta,$this->respuesta_incorrectas);
+
+
+            if(!($this->ocultarNingunatodasAnteriores[$numero])){
+            array_push($this->preguntasExamen[$numero],'Ninguna de las anteriores');            
+            }
+            if(!($this->ocultartodasAnteriores[$numero])){
+                array_push($this->preguntasExamen[$numero],'Todas de las anteriores');            
+            }
         
-        if ($this->respuesta_incorrectas[$cant] = []){
-            $this->respuestas_correcta[$cant+1] ='Todas son correctas'; 
-
-        }
-        if ($this->respuesta_correctas[$cant] = []){
-            $this->respuest_correcta[$cant+1] ='Ninguna es correcta'; 
-        }
-        shuffle($this->respuestas_correctas[$cant]);
-        shuffle($this->respuesta_incorrectas[$cant]);
-        $this->preguntasExamen[$cant] = array_merge($this->respuestas_correctas,$this->respuesta_incorrectas);
-
-
-        if(!($this->ocultarNingunatodasAnteriores[$cant])){
-           array_push($this->preguntasExamen[$cant],'Ninguna de las anteriores');            
-        }
-        if(!($this->ocultartodasAnteriores[$cant])){
-            array_push($this->preguntasExamen[$cant],'Todas de las anteriores');            
-        }
+        return $this->preguntasExamen[$numero];
     }
 
-    public function CrearTema($pregunta){
-        $contador = $this->Generarpregunta();
-        while($contador > $numero){
-        $this->opciones($numero);
-        $numero++;
-        }
-    }
 
-    public function obtenerpreguntas($numero){
-        return $this->pregun;
+
+    public function crearEvaluacion($preguntas, $tema){
+		$loader = new Twig_Loader_Filesystem('templates');
+		$twig = new Twig_Environment($loader);
+		$templateAlumn = $twig->load('alumno.html');
+		//Render del HTML con las variables
+		file_put_contents('exams/EvaluacionTema'.$tema.'.html', $templateAlumn->render(array('preguntas' => $preguntas, 'tema' => $tema)));
     }
+    
 
 
 }
