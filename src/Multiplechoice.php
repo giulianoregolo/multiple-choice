@@ -1,12 +1,8 @@
 <?php
 
-namespace Multiplechoice;
-
-use Twig_Environment;
-use Twig_Loader_Filesystem;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Parser;
-require_once __DIR__.'/../vendor/autoload.php';
+require_once  './vendor/autoload.php';
 
 class Multiplechoice{
     protected $preguntas = [];
@@ -26,7 +22,7 @@ class Multiplechoice{
         $this->cantTemas = $test;
         foreach($this->preguntas as $pregunta){
             if($contador > $this->cant ){ 
-                $descipciones[$contador] = $pregunta[descripcion];
+                $this->descipciones[$contador] = $pregunta[descripcion];
                 $this->respuesta_incorrectas[$contador] = $pregunta[respuestas_incorrectas];
                 $this->respuestas_correcta[$contador] = $pregunta[respuestas_correctas];
                 if (array_key_exists('ocultar_opcion_todas_las_anteriores',$preguntas)){
@@ -92,15 +88,15 @@ class Multiplechoice{
     }
     
 	public function crearEvaluacion($tema){
-
-
-
-
 		$loader = new Twig_Loader_Filesystem('templates');
 		$twig = new Twig_Environment($loader);
 		$templateAlumn = $twig->load('alumno.html');
 		//Render del HTML con las variables
-		file_put_contents('evaluacionTema'.$tema.'.html', $templateAlumn->render(array('preguntas' => $this->preguntasExamen, 'tema' => $tema)));
-	}
+		file_put_contents('evaluaciones/evaluacionTema'.$tema.'.html', $templateAlumn->render(array('preguntas' => $this->preguntasExamen, 'tema' => $tema)));
+    }
+    
+    public function mostrarDesc($numero){
+        return $this->descipciones[$numero];
+    }
 
 }
