@@ -2,7 +2,7 @@
 
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Parser;
-require_once  './vendor/autoload.php';
+require_once  '../vendor/autoload.php';
 
 class Multiplechoice{
     protected $preguntas = [];
@@ -18,7 +18,7 @@ class Multiplechoice{
 
     public function __construct($cant,$test) {   
         $this->cant = $cant;
-        $this->preguntas = Yaml::parseFile('/ejemplo/preguntas.yml');
+        $this->preguntas = Yaml::parseFile('../ejemplo/preguntas.yml');
         $this->cantTemas = $test;
         foreach($this->preguntas as $pregunta){
             if($contador > $this->cant ){ 
