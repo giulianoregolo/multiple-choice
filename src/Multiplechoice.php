@@ -1,5 +1,7 @@
 <?php
 
+namespace Multiplechoice;
+
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Parser;
 require_once  '../vendor/autoload.php';
