@@ -21,6 +21,7 @@ class Multiplechoice{
     public function __construct($cant,$test) {   
         $this->cant = $cant;
         $this->preguntas = Yaml::parseFile('../ejemplo/preguntas.yml');
+        $this->preguntas = $this->preguntas['preguntas'];
         $this->cantTemas = $test;
         $contador = 0;
         foreach($this->preguntas as $pregunta){
