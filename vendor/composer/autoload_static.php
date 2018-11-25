@@ -4,12 +4,12 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit82999fc2b3cd1a1126056dbba60b2afc
+class ComposerStaticInit801426afa7a0aa6cd7d5796b6d1783fa
 {
     public static $files = array (
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -30,6 +30,20 @@ class ComposerStaticInit82999fc2b3cd1a1126056dbba60b2afc
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Component\\Yaml\\' => 23,
+            'Symfony\\Component\\Stopwatch\\' => 28,
+            'Symfony\\Component\\Filesystem\\' => 29,
+            'Symfony\\Component\\EventDispatcher\\' => 34,
+            'Symfony\\Component\\Console\\' => 26,
+            'Symfony\\Component\\Config\\' => 25,
+            'Satooshi\\' => 9,
+        ),
+        'P' => 
+        array (
+            'Psr\\Log\\' => 8,
+        ),
+        'M' => 
+        array (
+            'Multiplechoice\\' => 15,
         ),
         'D' => 
         array (
@@ -65,6 +79,38 @@ class ComposerStaticInit82999fc2b3cd1a1126056dbba60b2afc
         array (
             0 => __DIR__ . '/..' . '/symfony/yaml',
         ),
+        'Symfony\\Component\\Stopwatch\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/stopwatch',
+        ),
+        'Symfony\\Component\\Filesystem\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/filesystem',
+        ),
+        'Symfony\\Component\\EventDispatcher\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
+        ),
+        'Symfony\\Component\\Console\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/console',
+        ),
+        'Symfony\\Component\\Config\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/config',
+        ),
+        'Satooshi\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/satooshi/php-coveralls/src/Satooshi',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Multiplechoice\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
         'Doctrine\\Instantiator\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
@@ -88,6 +134,17 @@ class ComposerStaticInit82999fc2b3cd1a1126056dbba60b2afc
             'Prophecy\\' => 
             array (
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
+            ),
+        ),
+        'G' => 
+        array (
+            'Guzzle\\Tests' => 
+            array (
+                0 => __DIR__ . '/..' . '/guzzle/guzzle/tests',
+            ),
+            'Guzzle' => 
+            array (
+                0 => __DIR__ . '/..' . '/guzzle/guzzle/src',
             ),
         ),
     );
@@ -618,10 +675,10 @@ class ComposerStaticInit82999fc2b3cd1a1126056dbba60b2afc
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit82999fc2b3cd1a1126056dbba60b2afc::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit82999fc2b3cd1a1126056dbba60b2afc::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit82999fc2b3cd1a1126056dbba60b2afc::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit82999fc2b3cd1a1126056dbba60b2afc::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit801426afa7a0aa6cd7d5796b6d1783fa::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit801426afa7a0aa6cd7d5796b6d1783fa::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit801426afa7a0aa6cd7d5796b6d1783fa::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit801426afa7a0aa6cd7d5796b6d1783fa::$classMap;
 
         }, null, ClassLoader::class);
     }

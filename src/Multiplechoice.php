@@ -1,6 +1,6 @@
 <?php
 
-Multiplechoice;
+namespace Multiplechoice;
 
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Parser;
@@ -22,6 +22,7 @@ class Multiplechoice{
         $this->cant = $cant;
         $this->preguntas = Yaml::parseFile('../ejemplo/preguntas.yml');
         $this->cantTemas = $test;
+        $contador = 0;
         foreach($this->preguntas as $pregunta){
             if($contador > $this->cant ){ 
                 $this->descipciones[$contador] = $pregunta[descripcion];
@@ -90,11 +91,11 @@ class Multiplechoice{
     }
     
 	public function crearEvaluacion($tema){
-		$loader = new Twig_Loader_Filesystem('templates');
+		$loader = new Twig_Loader_Filesystem('../templates');
 		$twig = new Twig_Environment($loader);
-		$templateAlumn = $twig->load('alumno.html');
+		$templateAlumn = $twig->load('../templates/alumno.html');
 		//Render del HTML con las variables
-		file_put_contents('../evaluaciones/evaluacionTema'.$tema.'.html', $templateAlumn->render(array('preguntas' => $this->preguntasExamen, 'tema' => $tema)));
+		file_put_contents('/evaluaciones/evaluacionTema'.$tema.'.html', $templateAlumn->render(array('preguntas' => $this->preguntasExamen, 'tema' => $tema)));
     }
     
     public function mostrarDesc($numero){
