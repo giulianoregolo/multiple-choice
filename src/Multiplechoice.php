@@ -95,7 +95,7 @@ class Multiplechoice{
 		$twig = new Twig_Environment($loader);
 		$templateAlumn = $twig->load('../templates/alumno.html');
 		//Render del HTML con las variables
-		file_put_contents('/evaluaciones/evaluacionTema'.$tema.'.html', $templateAlumn->render(array('preguntas' => $this->preguntasExamen, 'tema' => $tema)));
+		file_put_contents('evaluacionTema'.$tema.'.html', $templateAlumn->render(array('preguntas' => $this->preguntasExamen, 'tema' => $tema)));
     }
     
     public function mostrarDesc($numero){
