@@ -46,7 +46,7 @@ class Multiplechoice{
         }
     }
 
-    public function getCorrectas() {
+    public function getCorrectas(){
 		$letras = [];
 		$i = 0;
 		foreach ($this->respuestas_correcta as $correctas ) {
@@ -89,14 +89,6 @@ class Multiplechoice{
             }
         }
         return $this->preguntasExamen;
-    }
-    
-	public function crearEvaluacion($tema){
-		$loader = new Twig_Loader_Filesystem('../templates');
-		$twig = new Twig_Environment($loader);
-		$templateAlumn = $twig->load('../templates/alumno.html');
-		//Render del HTML con las variables
-		file_put_contents('evaluacionTema'.$tema.'.html', $templateAlumn->render(array('preguntas' => $this->preguntasExamen, 'tema' => $tema)));
     }
     
     public function mostrarDesc($numero){
