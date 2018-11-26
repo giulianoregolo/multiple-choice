@@ -1,53 +1,100 @@
+
 <!DOCTYPE html>
 <html>
-<meta charset="UTF-8"> 
-<head>
-<style>
+  <head>
+    <title>Exam {{tema}}</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name=viewport content="width=device-width, initial-scale=1">
 
-.columns {
-  column-width: 200px;
-  max-width: 800px;
-  margin: 0 auto;
-}
+    <style>
+      .question {
+          border: 1px solid gray;
+          padding: 0.3em;
+      }
+      .number {
+          float: left;
+          margin-right: 0.5em;
+          font-weight: bold;
+      }
+      .options {
+          display: flex;
+          flex-direction: column;
+      }
+      .short {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 1em;
+      }
+      .questions {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 1em 1em;
+      }
+      .header {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 1em;
+      }
+      .description {
+          margin-bottom: 0.5em;
+          font-weight: bold;
+      }
+      body {
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <strong>Nombre y Apellido _____________________________________________ </strong>
+      <strong>Evaluación número</strong>
+      <strong>TEMA {{tema}}</strong>
+    </div>
 
-.grid-container {
-  display: grid;
-  padding: 0.3em;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat (2, 50vh);
-  grid-gap: 1em;
-}
-
-.grid-item {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 5px;
-  padding-top:10;
-  font-size: 20px;
-}
-
-</style>
-</head>
-<body>
-
-<div>
-  <p style="float: left; padding-left: 0.7em;"><b>Nombre y Apellido _________________________________</b></p>
-  <p style="float: right; padding-right: 0.2em;"><b>IPS. TEMA {{tema}}</b></p>
-  <p style="float: right; padding-right: 0.2em;"><b>Evaluación número 4 - 25/11/2018</b></p>
-<br><br><br>
-</div>
+    <div class="questions">
+        {% for preguntas in preguntas %}
+        <div class='question'>
+            <div class='number'>{{ preguntas.getNumero() }})______</div>
+            <div class='description'>{{ preguntas.getDescripcion() }}</div>
+            <div class='options short'>
+                    {% set letras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'] %}
+                    {% set index = 0 %}
 
 
-<div class="grid-container">
-  {% set npreg = 1 %}
-  {% for preg in preguntas %}
-    <div class="grid-item">
-      <b><label>{{npreg}})____ {{preg.mostrarDesc()}}</label></b><br>
+                    {% for respuesta in preguntas.getRespuestas %}
+                        {% set letra = letras[index] %}                        
+                        <div class='option'>{{ letra }}) {{ respuesta }}</div>
+                        {% set index = index + 1 %}
+
+                    {% endfor %}
+                    
+                    {% set index = index + 1 %}
+                    {% set letra = letras[index] %}                        
+
+
+                    {% if preguntas.ocultar_opcion_todas_las_anteriores == False %}                            
+                        <div class='option'> {{ letra }}) Todas las anteriores.</div>  
+                    {% endif %}
+
+                    {% set index = index + 1 %}
+                    {% set letra = letras[index] %}  
+
+                    {% if preguntas.ocultas_opcion_ninguna_de_las_anteriores == False %}   
+
+                        {% if preguntas.texto_ninguna_de_las_anteriores != NULL %}   
+                            <div class='option'> {{ letra }}) {{ preguntas.texto_ninguna_de_las_anteriores }}.</div>                             
+                        {% else %}
+                            <div class='option'> {{ letra }}) Ninguna de las anteriores.</div>  
+                        {% endif %}
+                        
+                    {% endif %}
+
+            </div>
+        </div>
+
+        {% endfor %}
 
     </div>
-  {% set npreg = npreg + 1 %}
-  {% endfor %}
-
-</div>
-</body>
+  </body>
 </html>
