@@ -54,7 +54,7 @@
     <div class="questions">
         {% for preguntas in preguntas %}
         <div class='question'>
-            <div class='number'>{{ preguntas.getNumero() }}) {{preguntas.getRespCorrectas()}}</div>
+            <div class='number'>{{ preguntas.getNumero() }}) {{}}</div>
             <div class='description'>{{ preguntas.getDescripcion() }}</div>
             <div class='options short'>
                     {% set letras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'] %}

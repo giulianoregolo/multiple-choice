@@ -12,6 +12,7 @@ class Preguntas {
     protected $texto_ninguna_de_las_anteriores = "Ninguna de las anteriores";
     protected $todaslasanteriores = false;
     protected $ningunadelasanteriores = false;
+    protected $abc = ['A','B','C','D','E','F','G'];
     
 	public function __construct($info, $num){
         $this->numero = $num;
@@ -41,16 +42,10 @@ class Preguntas {
     public function getRespuestas(){
         return $this->respuestas;
     }
-    public function getCantRespuestas(){
-        return count($this->respuestas);
-    }
     public function getNumero(){
         return $this->numero;
     }
-    public function getRespCorrectas(){
-        return $this->respuestas_correctas;
-    }
-    public function getRespIncorrectas(){
-        return $this->respuestas_incorrectas;
+    public function obtenerRespCorrectas(){
+        
     }
 }
