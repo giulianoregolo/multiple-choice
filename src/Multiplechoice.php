@@ -14,9 +14,9 @@ class Multiplechoice{
     protected $ocultarNingunatodasAnteriores = [];
     protected $respuesta_incorrectas = [];
     protected $respuestas_correcta = [];
-    protected $preguntasExamen = [];
     protected $respuestasExamen = [];
     protected $cantTemas;
+    protected $parche = 0;
     protected $abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'];
 
     public function __construct($cant,$test) {   
@@ -28,25 +28,25 @@ class Multiplechoice{
         $this->preguntas = array_slice($this->preguntas, 0, $cant);
         shuffle($this->preguntas);
         foreach($this->preguntas as $pregunta){
-            if($contador > $this->cant ){ 
-                $this->descipciones[$contador] = $pregunta[descripcion];
-                $this->respuesta_incorrectas[$contador] = $pregunta[respuestas_incorrectas];
-                $this->respuestas_correcta[$contador] = $pregunta[respuestas_correctas];
-                if (array_key_exists('ocultar_opcion_todas_las_anteriores',$preguntas)){
-                    $this->ocultartodasAnteriores[$contador] = true; 
-                }
-                else{
-                    $this->ocultartodasAnteriores[$contador] = false;
-                }
-                if(array_key_exists('ocultas_opcion_ninguna_de_las_anteriores',$pregunta)){
-                    $this->ocultarNingunatodasAnteriores[$contador] = true;
-                }
-                else{
-                    $this->ocultarNingunatodasAnteriores[$contador] = false;
-                }
-                $contador++;
+            $this->descipciones[$contador] = $pregunta['descripcion'];
+            $this->respuesta_incorrectas[$contador] = $pregunta['respuestas_incorrectas'];
+            $this->respuestas_correcta[$contador] = $pregunta['respuestas_correctas'];
+            if (isset($preguntas['ocultar_opcion_todas_las_anteriores'])){
+                $this->ocultartodasAnteriores[$contador] = true; 
             }
+            else{
+                $this->ocultartodasAnteriores[$contador] = false;
+            }
+            if(isset($pregunta['ocultas_opcion_ninguna_de_las_anteriores'])){
+                $this->ocultarNingunatodasAnteriores[$contador] = true;
+            }
+            else{
+                $this->ocultarNingunatodasAnteriores[$contador] = false;
+            }
+            $contador++;
+            
         }
+        $this->respuestasExamen = $this->opciones();
     }
 
     public function getCorrectas(){
@@ -66,40 +66,42 @@ class Multiplechoice{
     
     public function opciones(){
         for($numero = 0;$numero < $this->cant;$numero++){ 
-            if ($this->respuesta_incorrectas[$numero] = []){
+            if (empty ($this->respuesta_incorrectas[$numero])){
                 $this->respuesta_incorrectas[$numero] = $this->respuesta_correctas[$numero];
                 $this->respuesta_correctas[$numero] = [];
                 if(!($this->ocultarNingunatodasAnteriores[$numero])){
                     array_push($this->respuesta_incorrectas[$numero],'Ninguna de las anteriores');            
                 }
                 if(!($this->ocultartodasAnteriores[$numero])){
-                    array_push($this->respuesta_correctas[$numero],'Todas de las anteriores');            
+                    $this->respuesta_correctas[$numero] = 'Todas de las anteriores';            
                 }
-                shuffle($this->respuestas_correcta[$numero]);
-                shuffle($this->respuesta_incorrectas[$numero]);
                 $this->respuestasExamen[$numero] = array_merge($this->respuestas_correcta[$numero],$this->respuesta_incorrectas[$numero]);
-            
+                shuffle($this->respuestasExamen[$numero]);
             }
-            elseif ($this->respuesta_correctas[$numero] = []){
-                
+            elseif (empty($this->respuesta_correctas[$numero])){
                 if(!($this->ocultarNingunatodasAnteriores[$numero])){
-                    array_push($this->respuesta_correctas[$numero],'Ninguna de las anteriores');            
+                    $this->respuesta_correctas[$numero] = 'Ninguna de las anteriores';            
                 }
                 if(!($this->ocultartodasAnteriores[$numero])){
                     array_push($this->respuesta_incorrectas[$numero],'Todas de las anteriores');            
                 }
-
-                shuffle($this->respuestas_correcta[$numero]);
-                shuffle($this->respuesta_incorrectas[$numero]);
                 $this->respuestasExamen[$numero] = array_merge($this->respuestas_correcta[$numero],$this->respuesta_incorrectas[$numero]);
-
+                shuffle($this->respuestasExamen[$numero]);
             }
         }
         return $this->respuestasExamen;
     }
+
+    public function getopciones(){
+        $opciones = $this->respuestasExamen[parche];
+        $this->parche++;
+        return $opciones;
+    }
     
-    public function mostrarDesc($numero){
-        return $this->descipciones[$numero];
+    public function mostrarDesc(){
+        $desc = $this->descipciones[parche];
+        $this->parche++;
+        return $desc;
     }
 
 }

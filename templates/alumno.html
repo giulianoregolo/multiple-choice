@@ -42,14 +42,8 @@
   {% set npreg = 1 %}
   {% for preg in preguntas %}
     <div class="grid-item">
-      <b><label>{{npreg}})____ {{preg.mostrarDesc(npreg)}}</label></b><br>
-      {% set abc = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N'] %}
-      {% set index = 0 %}
-      {% set respuestas = preg.opciones() %}
-      {% for resp in respuestas %}
-        <br><label>{{abc[index]}}) {{resp}}</label>
-        {% set index = index + 1 %}
-      {% endfor %}
+      <b><label>{{npreg}})____ {{preg.mostrarDesc()}}</label></b><br>
+
     </div>
   {% set npreg = npreg + 1 %}
   {% endfor %}
