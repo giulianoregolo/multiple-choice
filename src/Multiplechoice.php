@@ -15,6 +15,7 @@ class Multiplechoice{
     protected $respuesta_incorrectas = [];
     protected $respuestas_correcta = [];
     protected $preguntasExamen = [];
+    protected $respuestasExamen = [];
     protected $cantTemas;
     protected $abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'];
 
@@ -24,6 +25,8 @@ class Multiplechoice{
         $this->preguntas = $this->preguntas['preguntas'];
         $this->cantTemas = $test;
         $contador = 0;
+        $this->preguntas = array_slice($this->preguntas, 0, $cant);
+        shuffle($this->preguntas);
         foreach($this->preguntas as $pregunta){
             if($contador > $this->cant ){ 
                 $this->descipciones[$contador] = $pregunta[descripcion];
@@ -54,7 +57,11 @@ class Multiplechoice{
             $i++;
 		}
 		return $letras;
-	}
+    }
+    
+    public function obtenerPreguntas(){
+       return $this->preguntas;
+    }
 
     
     public function opciones(){
@@ -70,7 +77,7 @@ class Multiplechoice{
                 }
                 shuffle($this->respuestas_correcta[$numero]);
                 shuffle($this->respuesta_incorrectas[$numero]);
-                $this->preguntasExamen[$numero] = array_merge($this->respuestas_correcta[$numero],$this->respuesta_incorrectas[$numero]);
+                $this->respuestasExamen[$numero] = array_merge($this->respuestas_correcta[$numero],$this->respuesta_incorrectas[$numero]);
             
             }
             elseif ($this->respuesta_correctas[$numero] = []){
@@ -84,11 +91,11 @@ class Multiplechoice{
 
                 shuffle($this->respuestas_correcta[$numero]);
                 shuffle($this->respuesta_incorrectas[$numero]);
-                $this->preguntasExamen[$numero] = array_merge($this->respuestas_correcta[$numero],$this->respuesta_incorrectas[$numero]);
+                $this->respuestasExamen[$numero] = array_merge($this->respuestas_correcta[$numero],$this->respuesta_incorrectas[$numero]);
 
             }
         }
-        return $this->preguntasExamen;
+        return $this->respuestasExamen;
     }
     
     public function mostrarDesc($numero){
