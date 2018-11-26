@@ -8,10 +8,11 @@ require_once  '../vendor/autoload.php';
     <head>
     </head>
     <body >
-    <h1 class=centro>Generador de Pruebas Multiple Choice</h1>
-    <div class="centrar">  
-                <div class="centrar2">
-                <a href="generarprueba.php" class="button button--moema button--border-thick button--size-l">Generar Pruebas</a>
+    <h1 class=centro>Generador de Pruebas</h1>
+    <div >  
+                <div >
+                <a href="generarprueba.php">Generar Pruebas</a>
+                <a href="generarRespuestas.php">Resolucion</a>
                 </div>
                 <br>
         </div>

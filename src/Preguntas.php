@@ -3,7 +3,7 @@ namespace Multiplechoice;
 use Symfony\Component\Yaml\Yaml;
 class Preguntas {
     protected $numero;
-    protected $descripcion;
+    protected $desc;
     protected $respuestas;
     protected $respuestas_correctas;
     protected $respuestas_incorrectas;
@@ -15,7 +15,7 @@ class Preguntas {
     
 	public function __construct($info, $num){
         $this->numero = $num;
-        $this->descripcion=$info["descripcion"];
+        $this->desc=$info["descripcion"];
         $this->respuestas_correctas = $info["respuestas_correctas"];
         $this->respuestas_incorrectas = $info["respuestas_incorrectas"];
         if( count($this->respuestas_incorrectas) == 0) $this->todas = true;
@@ -31,6 +31,9 @@ class Preguntas {
         }
         $this->armarRespuestas();
     }
+    public function getDescripcion(){
+        return $this->desc;
+    }
     public function armarRespuestas(){
         $this->respuestas = array_merge($this->respuestas_correctas, $this->respuestas_incorrectas);
         shuffle($this->respuestas);
@@ -43,9 +46,6 @@ class Preguntas {
     }
     public function getNumero(){
         return $this->numero;
-    }
-    public function getDescripcion(){
-        return $this->descripcion;
     }
     public function getRespCorrectas(){
         return $this->respuestas_correctas;

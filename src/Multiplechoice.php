@@ -12,7 +12,7 @@ class Multiplechoice {
             $this->preguntas[$i] = new Preguntas($pregs[$i], $i+1);
         }
     }
-    public function getCantPreguntas(){
+    public function numeroPreguntas(){
         return count($this->preguntas);
     }
     public function getPreguntas(){
