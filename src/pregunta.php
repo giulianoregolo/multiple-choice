@@ -24,13 +24,13 @@ class pregunta{
         if(array_key_exists("ocultas_opcion_ninguna_de_las_anteriores",$yaml)){
             $this->ocultarNingunatodasAnteriores = true;
         }
+        $this->opciones();
     }
 
     public function opciones(){
         $this->opcionesExamen = array_merge($this->respuestas_correcta,$this->respuesta_incorrectas);
         shuffle($this->opcionesExamen);
         $this->ningunaoTodasAnteriores();
-        return $this->opcionesExamen;
     }
 
     public function ningunaoTodasAnteriores(){
@@ -65,5 +65,9 @@ class pregunta{
 
     public function mostrarDesc(){
         return $this->descipciones;
+    }
+
+    public function optenerpreg(){
+        return $this->opcionesExamen;
     }
 }

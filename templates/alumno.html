@@ -45,7 +45,7 @@
       <b><label>{{npreg}})____ {{preg.mostrarDesc()}}</label></b><br>
       {% set abc = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N'] %}
       {% set index = 0 %}
-      {% set respuestas = preg.opciones() %}
+      {% set respuestas = preg.optenerpreg() %}
       {% for resp in respuestas %}
         <br><label>{{abc[index]}}) {{resp}}</label>
         {% set index = index + 1 %}
