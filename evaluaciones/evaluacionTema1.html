@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8"> 
+<head>
+<style>
+
+.columns {
+  column-width: 200px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.grid-container {
+  display: grid;
+  padding: 0.3em;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat (2, 50vh);
+  grid-gap: 1em;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 5px;
+  padding-top:10;
+  font-size: 20px;
+}
+
+</style>
+</head>
+<body>
+
+<div>
+  <p style="float: left; padding-left: 0.7em;"><b>Nombre y Apellido _________________________________</b></p>
+  <p style="float: right; padding-right: 0.2em;"><b>IPS. TEMA 1</b></p>
+  <p style="float: right; padding-right: 0.2em;"><b>Evaluación número 4 - 28/11/2018</b></p>
+<br><br><br>
+</div>
+
+
+<div class="grid-container">
+        <div class="grid-item">
+      <b><label>1)____ El término pixel hace referencia a</label></b><br>
+                                <br><label>A) La unidad mínima de información de una imagen.</label>
+                      <br><label>B) La cantidad de colores de un punto.</label>
+                      <br><label>C) La cantidad de puntos por pulgada.</label>
+                      <br><label>D) La longitud de la diagonal de una imagen en pulgadas.</label>
+                  </div>
+        <div class="grid-item">
+      <b><label>2)____ Para las imágenes vectoriales se cumple que</label></b><br>
+                                <br><label>A) Pueden perder detalle y verse pixeladas cuando se amplían.</label>
+                      <br><label>B) A cada píxel se le asigna una ubicación y un valor de color específico.</label>
+                      <br><label>C) Son creadas por los escaners y las cámaras digitales.</label>
+                      <br><label>D) Poseen un número fijo de píxeles.</label>
+                      <br><label>E) Todas las anteriores</label>
+                      <br><label>F) Ninguna de las anteriores</label>
+                  </div>
+        <div class="grid-item">
+      <b><label>3)____ Para las imágenes de mapas de bits se cumple que</label></b><br>
+                                <br><label>A) A cada píxel se le asigna una ubicación y un valor de color específico.</label>
+                      <br><label>B) Constan de un número fijo de píxeles.</label>
+                      <br><label>C) Son creadas por los escaners y las cámaras digitales.</label>
+                      <br><label>D) Pueden perder detalle y verse pixeladas cuando se amplían.</label>
+                      <br><label>E) Todas las anteriores</label>
+                      <br><label>F) Ninguna de las anteriores</label>
+                  </div>
+        <div class="grid-item">
+      <b><label>4)____ Las extensiones de archivo que pertenecen al grupo de mapas de bits son</label></b><br>
+                                <br><label>A) Solo GIF</label>
+                      <br><label>B) Solo JPG</label>
+                      <br><label>C) JPG, BMP, PNG, GIF</label>
+                      <br><label>D) JPG, BMP, PNG, GIF y SVG</label>
+                      <br><label>E) Solo BMP</label>
+                      <br><label>F) Solo PNG</label>
+                  </div>
+        <div class="grid-item">
+      <b><label>5)____ ¿Cuál de las siguientes afirmaciones es incorrecta?</label></b><br>
+                                <br><label>A) SVG: Permite transparencias.</label>
+                      <br><label>B) JPG: Permite imágenes animadas</label>
+                      <br><label>C) BMP: No soporta transparencia.</label>
+                      <br><label>D) PNG: Permite transparencia</label>
+                      <br><label>E) GIF: Soporta transparencia pero no translucidez.</label>
+                  </div>
+        <div class="grid-item">
+      <b><label>6)____ El formato BMP</label></b><br>
+                                <br><label>A) Puede implicar perder algo de la calidad de la imagen si se define cierto factor de compresión.</label>
+                      <br><label>B) Reduce el tamaño de archivo porque elimina la información del color.</label>
+                      <br><label>C) Ha sido diseñado específicamente para comprimir imágenes digitales.</label>
+                      <br><label>D) Siempre tienen una profundidad de color de 1 bit.</label>
+                      <br><label>E) Permite transparencias.</label>
+                      <br><label>F) Todas las anteriores</label>
+                      <br><label>G) Ninguna de las anteriores</label>
+                  </div>
+        <div class="grid-item">
+      <b><label>7)____ En las imágenes del tipo vectorial</label></b><br>
+                                <br><label>A) La calidad de la imagen no varía al modificar el tamaño de la misma.</label>
+                      <br><label>B) Se reduce el tamaño del archivo porque elimina la información del color.</label>
+                      <br><label>C) Se reducen los colores de la imagen a un máximo de 256.</label>
+                      <br><label>D) Cada píxel tiene un valor de brillo comprendido entre 0 (negro) y 255 (blanco).</label>
+                  </div>
+        <div class="grid-item">
+      <b><label>8)____ El formato PNG es superior al BMP porque</label></b><br>
+                                <br><label>A) Su compresión no reduce la calidad de imagen.</label>
+                      <br><label>B) Permite archivos más pequeños con la misma calidad.</label>
+                      <br><label>C) Se puede usar en la web.</label>
+                      <br><label>D) Permite transparencias.</label>
+                      <br><label>E) Todas las anteriores</label>
+                      <br><label>F) Ninguna de las anteriores</label>
+                  </div>
+        <div class="grid-item">
+      <b><label>9)____ ¿Para una imagen de 500 x 500 pixeles con 180 colores diferentes guarado en distintos formatos, que archivo es el más espacio en disco ocupa?</label></b><br>
+                                <br><label>A) imagen.gif</label>
+                      <br><label>B) imagen.bmp</label>
+                      <br><label>C) imagen.jpg</label>
+                      <br><label>D) imagen.png</label>
+                  </div>
+        <div class="grid-item">
+      <b><label>10)____ Los archivos del tipo GIF</label></b><br>
+                                <br><label>A) Permiten definir un color como transparente</label>
+                      <br><label>B) Son un formato vectorial</label>
+                      <br><label>C) Permiten mostrar imagenes en color real</label>
+                      <br><label>D) Permiten translucidez</label>
+                  </div>
+    
+</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8"> 
+<head>
+<style>
+
+.columns {
+  column-width: 200px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.grid-container {
+  display: grid;
+  padding: 0.3em;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat (2, 50vh);
+  grid-gap: 1em;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 5px;
+  padding-top:10;
+  font-size: 20px;
+}
+
+</style>
+</head>
+<body>
+
+<div>
+  <p style="float: left; padding-left: 0.7em;"><b>Nombre y Apellido _________________________________</b></p>
+  <p style="float: right; padding-right: 0.2em;"><b>IPS. TEMA {{tema}}</b></p>
+  <p style="float: right; padding-right: 0.2em;"><b>Evaluación número 4 - 28/11/2018</b></p>
+<br><br><br>
+</div>
+
+
+<div class="grid-container">
+  {% set npreg = 1 %}
+  {% for preg in preguntas %}
+    <div class="grid-item">
+      <b><label>{{npreg}}){{preg.getCorrectas()}}-{{preg.mostrarDesc()}}</label></b><br>
+      {% set abc = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N'] %}
+      {% set index = 0 %}
+      {% set respuestas = preg.opciones() %}
+      {% for resp in respuestas %}
+        <br><label>{{abc[index]}}) {{resp}}</label>
+        {% set index = index + 1 %}
+      {% endfor %}
+    </div>
+  {% set npreg = npreg + 1 %}
+  {% endfor %}
+
+</div>
+</body>
+</html>

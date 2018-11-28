@@ -12,7 +12,6 @@ class Multiplechoice{
     protected $cantTemas;
     protected $yaml;
     protected $parche = 0;
-    protected $abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'];
 
     public function __construct($cant,$test) {   
         $this->cant = $cant;
@@ -42,8 +41,10 @@ class Multiplechoice{
         echo "primer alert \n ";
 		$loader = new \Twig_Loader_Filesystem('./templates');
 		$twig = new \Twig_Environment($loader);
-		$templateAlumn = $twig->load('alumno.html');
-        file_put_contents('./evaluaciones/evaluacionTema.html', $templateAlumn->render(array('preguntas' => $this->preguntas, 'tema' => $tema)));
+        $templateAlumn = $twig->load('alumno.html');
+        $templateAlumn2 = $twig->load('respuestas.html');
+        file_put_contents('./evaluaciones/evaluacionTema'.$tema.'.html', $templateAlumn->render(array('preguntas' => $this->preguntas, 'tema' => $tema)));
+        file_put_contents('./evaluaciones/respusetasTema'.$tema.'.html', $templateAlumn2->render(array('preguntas' => $this->preguntas, 'tema' => $tema)));
     }
     
 }
