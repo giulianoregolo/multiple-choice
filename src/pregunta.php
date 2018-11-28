@@ -10,6 +10,7 @@ class pregunta{
     protected $ocultarNingunatodasAnteriores;
     protected $respuesta_incorrectas = [];
     protected $respuestas_correcta = [];
+    protected $opcionesExamen = [];
 
 
     public function __construct($yaml){
@@ -25,43 +26,21 @@ class pregunta{
     }
 
     public function opciones(){
-       
-        if ($this->respuesta_incorrectas = []){
-            $this->respuesta_incorrectas = $this->respuestas_correcta;
-            $this->respuestas_correcta = [];
-            if(!($this->ocultarNingunatodasAnteriores)){
-                array_push($this->respuesta_incorrectas,'Ninguna de las anteriores');            
-            }
-            if(!($this->ocultartodasAnteriores)){
-                $this->respuestas_correcta = 'Todas de las anteriores';           
-            }
-            $this->preguntasExamen = array_merge($this->respuestas_correcta,$this->respuesta_incorrectas);
-            
-        }
-        elseif ($this->respuestas_correcta = []){
-            
-            if(!($this->ocultarNingunatodasAnteriores)){
-                $this->respuestas_correcta = 'Ninguna de las anteriores';            
-            }
-            if(!($this->ocultartodasAnteriores)){
-                array_push($this->respuesta_incorrectas,'Todas de las anteriores');            
-            }
-            $this->preguntasExamen = array_merge($this->respuestas_correcta,$this->respuesta_incorrectas);
-
-        }
-        return $this->preguntasExamen;
+            $this->opcionesExamen = array_merge($this->respuestas_correcta,$this->respuesta_incorrectas);
+            shuffle($this->opcionesExamen);
+        return $this->opcionesExamen;
     }
     public function getCorrectas() {
 		$letras = [];
 		$i = 0;
 		foreach ($this->respuestas_correcta as $correctas ) {
-            $letras[$i] = $this->abc[array_search($correctas[$i], $this->preguntasExamen[i])];
+            $letras[$i] = $this->abc[array_search($correctas[$i], $this->opcionesExamen[i])];
             $i++;
 		}
 		return $letras;
 	}
 
-    public function mostrarDesc($numero){
+    public function mostrarDesc(){
         return $this->descipciones;
     }
 }
