@@ -6,10 +6,10 @@ namespace Multiplechoice;
 class pregunta{
 
     protected $descipciones;
-    protected $ocultartodasAnteriores ;
-    protected $ocultarNingunatodasAnteriores;
-    protected $respuesta_incorrectas = [];
-    protected $respuestas_correcta = [];
+    protected $ocultartodasAnteriores =false ;
+    protected $ocultarNingunatodasAnteriores = false;
+    protected $respuesta_incorrectas;
+    protected $respuestas_correcta;
     protected $opcionesExamen = [];
 
 
@@ -26,10 +26,37 @@ class pregunta{
     }
 
     public function opciones(){
-            $this->opcionesExamen = array_merge($this->respuestas_correcta,$this->respuesta_incorrectas);
-            shuffle($this->opcionesExamen);
+        $this->opcionesExamen = array_merge($this->respuestas_correcta,$this->respuesta_incorrectas);
+        shuffle($this->opcionesExamen);
+        $this->ningunaoTodasAnteriores();
         return $this->opcionesExamen;
     }
+
+    public function ningunaoTodasAnteriores(){
+        if(is_null($this->respuesta_incorrectas)){
+            $this->respuesta_incorrectas = $this->respuestas_correcta;
+            $this->respuestas_correcta = [];
+            if($this->ocultarNingunatodasAnteriores==false){
+                $this->respuesta_incorrectas = array_push($this->respuesta_incorrectas ,"Ninguna de las anteriores");
+                array_push($this->opcionesExamen ,"Ninguna de las anteriores");
+            }   
+            if($this->ocultartodasAnteriores ==false){
+                $this->respuestas_correcta[1] = "Todas las anteriores";
+                array_push($this->opcionesExamen,"Todas las anteriores");
+            } 
+        }
+        if(is_null($this->respuestas_correcta)){
+            if($this->ocultarNingunatodasAnteriores==false){
+                $this->respuestas_correcta[1]= "Ninguna de las anteriores";
+                array_push($this->opcionesExamen,"Todas las anteriores");
+            } 
+            if($this->ocultartodasAnteriores==false){
+                array_push($this->respuesta_incorrectas,"Todas las anteriores");
+                array_push($this->opcionesExamen,"Todas las anteriores");
+            } 
+        }
+    }
+
     public function getCorrectas() {
 		$letras = [];
 		$i = 0;

@@ -20,7 +20,7 @@ class Multiplechoice{
         $this->yaml = $this->yaml['preguntas'];
         $this->cantTemas = $test;
         $contador = 0;
-        shuffle($this->yaml);
+        //shuffle($this->yaml);
         $this->yaml = array_slice($this->yaml, 0, $cant);
         foreach($this->yaml as $pregunta){
             $this->preguntas[$contador] = new pregunta($pregunta);
@@ -44,7 +44,6 @@ class Multiplechoice{
 		$twig = new \Twig_Environment($loader);
 		$templateAlumn = $twig->load('alumno.html');
         file_put_contents('./evaluaciones/evaluacionTema.html', $templateAlumn->render(array('preguntas' => $this->preguntas, 'tema' => $tema)));
-        echo "sedunco alert \n";
     }
     
 }
