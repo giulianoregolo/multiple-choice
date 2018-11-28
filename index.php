@@ -3,8 +3,8 @@
 namespace Multiplechoice;
 
 use Symfony\Component\Yaml\Yaml;
-require_once  '../vendor/autoload.php';
-$loader = new \Twig_Loader_Filesystem('../templates');
+require_once  './vendor/autoload.php';
+$loader = new \Twig_Loader_Filesystem('/templates');
 $twig = new \Twig_Environment($loader);
 
 //Cantidad de test a crear

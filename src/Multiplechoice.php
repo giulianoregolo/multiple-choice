@@ -21,12 +21,21 @@ class Multiplechoice{
         $this->yaml = $this->yaml['preguntas'];
         $this->cantTemas = $test;
         $contador = 0;
+        shuffle($this->yaml);
+        $this->yaml = array_slice($this->yaml, 0, $cant);
         foreach($this->yaml as $pregunta){
             $this->preguntas[$contador] = new pregunta($pregunta);
             $contador++;
         }
     }
 
+    public function obtenercantpreguntas(){
+        return $this->cant;
+    }
+
+    public function obteneryaml(){
+        return $this->yaml;
+    }
     
 	public function crearEvaluacion($tema){
 		$loader = new \Twig_Loader_Filesystem('../templates');
