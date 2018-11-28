@@ -42,7 +42,7 @@
   {% set npreg = 1 %}
   {% for preg in preguntas %}
     <div class="grid-item">
-      <b><label>{{npreg}})____ {{preg.mostrarDesc(npreg)}}</label></b><br>
+      <b><label>{{npreg}})____ {{preg.mostrarDesc()}}</label></b><br>
       {% set abc = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N'] %}
       {% set index = 0 %}
       {% set respuestas = preg.opciones() %}
