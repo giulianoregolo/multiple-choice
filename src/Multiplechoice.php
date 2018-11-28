@@ -9,7 +9,6 @@ require_once  './vendor/autoload.php';
 class Multiplechoice{
     protected $preguntas = [];
     protected $cant;
-    protected $preguntasExamen = [];
     protected $cantTemas;
     protected $yaml;
     protected $parche = 0;
@@ -27,6 +26,8 @@ class Multiplechoice{
             $this->preguntas[$contador] = new pregunta($pregunta);
             $contador++;
         }
+        $this->crearEvaluacion($test);
+
     }
 
     public function obtenercantpreguntas(){
@@ -38,10 +39,12 @@ class Multiplechoice{
     }
     
 	public function crearEvaluacion($tema){
-		$loader = new \Twig_Loader_Filesystem('../templates');
+        echo "primer alert \n ";
+		$loader = new \Twig_Loader_Filesystem('./templates');
 		$twig = new \Twig_Environment($loader);
-		$templateAlumn = $twig->load('../templates/alumno.html');
-		file_put_contents('../evaluaciones/evaluacionTema.html', $templateAlumn->render(array('preguntas' => $this->preguntasExamen, 'tema' => $tema)));
+		$templateAlumn = $twig->load('alumno.html');
+        file_put_contents('./evaluaciones/evaluacionTema.html', $templateAlumn->render(array('preguntas' => $this->preguntas, 'tema' => $tema)));
+        echo "sedunco alert \n";
     }
     
 }
