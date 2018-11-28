@@ -17,7 +17,7 @@ use SebastianBergmann;
  *
  * Identical check is performed with PHP's === operator, the operator is
  * explained in detail at
- * {@url https://php.net/manual/en/types.comparisons.php}.
+ * {@url http://www.php.net/manual/en/types.comparisons.php}.
  * Two values are identical if they have the same value and are of the same
  * type.
  *
@@ -61,6 +61,7 @@ class IsIdentical extends Constraint
      *
      * @throws ExpectationFailedException
      * @throws SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Exception
      *
      * @return mixed
      */
@@ -109,6 +110,9 @@ class IsIdentical extends Constraint
      * Returns a string representation of the constraint.
      *
      * @throws SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Exception
+     *
+     * @return string
      */
     public function toString(): string
     {
@@ -129,6 +133,9 @@ class IsIdentical extends Constraint
      * @param mixed $other evaluated value or object
      *
      * @throws SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Exception
+     *
+     * @return string
      */
     protected function failureDescription($other): string
     {

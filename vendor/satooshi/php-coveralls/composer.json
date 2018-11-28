@@ -9,14 +9,31 @@
         {
             "name": "Kitamura Satoshi",
             "email": "with.no.parachute@gmail.com",
-            "homepage": "https://www.facebook.com/satooshi.jp"
+            "homepage": "https://www.facebook.com/satooshi.jp",
+            "role": "Original creator"
+        },
+        {
+            "name": "Takashi Matsuo",
+            "email": "tmatsuo@google.com"
+        },
+        {
+            "name": "Google Inc"
+        },
+        {
+            "name": "Dariusz Ruminski",
+            "email": "dariusz.ruminski@gmail.com",
+            "homepage": "https://github.com/keradus"
+        },
+        {
+            "name": "Contributors",
+            "homepage": "https://github.com/php-coveralls/php-coveralls/graphs/contributors"
         }
     ],
     "require": {
-        "php": "^5.3.3 || ^7.0",
+        "php": "^5.5 || ^7.0",
         "ext-json": "*",
         "ext-simplexml": "*",
-        "guzzle/guzzle": "^2.8 || ^3.0",
+        "guzzlehttp/guzzle": "^6.0",
         "psr/log": "^1.0",
         "symfony/config": "^2.1 || ^3.0 || ^4.0",
         "symfony/console": "^2.1 || ^3.0 || ^4.0",
@@ -30,26 +47,32 @@
         "symfony/http-kernel": "Allows Symfony integration"
     },
     "autoload": {
-        "psr-4": { "Satooshi\\": "src/Satooshi/" }
+        "psr-4": { "PhpCoveralls\\": "src/"}
     },
     "autoload-dev": {
-        "psr-4": { "Satooshi\\": "tests/Satooshi/" }
+        "psr-4": { "PhpCoveralls\\Tests\\": "tests/"}
     },
-    "bin": ["bin/coveralls"],
+    "bin": ["bin/php-coveralls"],
     "scripts": {
-        "install-devtools": [
-            "cd devtools && composer update --no-interaction"
+        "install-dev-tools": [
+            "cd dev-tools && composer update --no-interaction"
         ],
         "sca": [
-            "php devtools/vendor/bin/php-cs-fixer fix --dry-run -vv",
-            "php devtools/vendor/bin/phpcs --standard=build/config/phpcs.xml --ignore=*.html.php,*.config.php,*.twig.php src",
-            "php devtools/vendor/bin/phpmd src text build/config/phpmd.xml"
+            "php dev-tools/vendor/bin/php-cs-fixer fix --dry-run -vv",
+            "php dev-tools/vendor/bin/phpmd src text build/config/phpmd.xml"
         ],
         "apigen": [
-            "php devtools/vendor/bin/apigen -c build/config/apigen.neon -d build/api -s src -s vendor/symfony/config -s vendor/symfony/console -s vendor/symfony/yaml -s vendor/guzzle/guzzle/src -s vendor/psr/log --report build/logs/checkstyle-apigen.xml --exclude *Test.php --exclude */Tests/* --google-analytics UA-40398434-1"
+            "php dev-tools/vendor/bin/apigen -c build/config/apigen.neon -d build/api -s src -s vendor/symfony/config -s vendor/symfony/console -s vendor/symfony/yaml -s vendor/guzzle/guzzle/src -s vendor/psr/log --report build/logs/checkstyle-apigen.xml --exclude *Test.php --exclude */Tests/* --google-analytics UA-40398434-1"
         ]
     },
     "config": {
-        "process-timeout": 0
+        "optimize-autoloader": true,
+        "process-timeout": 0,
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
     }
 }

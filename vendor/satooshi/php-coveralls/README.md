@@ -1,9 +1,9 @@
 php-coveralls
 =============
 
-[![Build Status](https://travis-ci.org/php-coveralls/php-coveralls.png?branch=master)](https://travis-ci.org/php-coveralls/php-coveralls)
+[![Build Status](https://travis-ci.org/php-coveralls/php-coveralls.svg?branch=master)](https://travis-ci.org/php-coveralls/php-coveralls)
 [![Coverage Status](https://coveralls.io/repos/php-coveralls/php-coveralls/badge.png?branch=master)](https://coveralls.io/r/php-coveralls/php-coveralls)
-[![Dependency Status](https://www.versioneye.com/package/php--satooshi--php-coveralls/badge.png)](https://www.versioneye.com/package/php--satooshi--php-coveralls)
+[![Dependency Status](https://www.versioneye.com/php/php-coveralls:php-coveralls/1.0.1/badge?style=flat-square)](https://www.versioneye.com/php/php-coveralls:php-coveralls/1.0.1)
 
 [![Latest Stable Version](https://poser.pugx.org/php-coveralls/php-coveralls/v/stable.png)](https://packagist.org/packages/php-coveralls/php-coveralls)
 [![Total Downloads](https://poser.pugx.org/php-coveralls/php-coveralls/downloads.png)](https://packagist.org/packages/php-coveralls/php-coveralls)
@@ -12,7 +12,7 @@ PHP client library for [Coveralls](https://coveralls.io).
 
 # Prerequisites
 
-- PHP 5.3 or later
+- PHP 5.5+ for 2.x or 5.3+ for 1.x
 - On [GitHub](https://github.com/)
 - Building on [Travis CI](http://travis-ci.org/), [CircleCI](https://circleci.com/), [Jenkins](http://jenkins-ci.org/) or [Codeship](https://www.codeship.io/)
 - Testing by [PHPUnit](https://github.com/sebastianbergmann/phpunit/) or other testing framework that can generate clover style coverage report
@@ -25,14 +25,14 @@ We started to create a phar file, starting from the version 0.7.0
 release. It is available at the URLs like:
 
 ```
-https://github.com/php-coveralls/php-coveralls/releases/download/v1.0.0/coveralls.phar
+https://github.com/php-coveralls/php-coveralls/releases/download/v2.0.0/php-coveralls.phar
 ```
 
 Download the file and add exec permissions:
 
 ```sh
-$ wget https://github.com/php-coveralls/php-coveralls/releases/download/v1.0.0/coveralls.phar
-$ chmod +x coveralls.phar
+$ wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.0.0/php-coveralls.phar
+$ chmod +x php-coveralls.phar
 ```
 
 ## Install by composer
@@ -40,7 +40,13 @@ $ chmod +x coveralls.phar
 To install php-coveralls with Composer, run the following command:
 
 ```sh
-$ composer require php-coveralls/php-coveralls --dev
+$ composer require php-coveralls/php-coveralls
+```
+
+If you need support for PHP versions older than 5.5, you will need to use a 1.x version:
+
+```sh
+$ composer require php-coveralls/php-coveralls '^2.0'
 ```
 
 You can see this library on [Packagist](https://packagist.org/packages/php-coveralls/php-coveralls).
@@ -99,7 +105,7 @@ Above settings are good for most projects if your test suite is executed once a 
 
 ```json
     "require-dev": {
-        "php-coveralls/php-coveralls": "^1.0",
+        "php-coveralls/php-coveralls": "^2.0",
         "phpunit/phpcov": "^2.0"
     },
 ```
@@ -154,7 +160,7 @@ php-coveralls collects `count` attribute in a `line` tag from `clover.xml` if it
 
 ## Travis CI
 
-Add `php coveralls.phar` or `php vendor/bin/coveralls` to your `.travis.yml` at `after_success`.
+Add `php php-coveralls.phar` or `php vendor/bin/php-coveralls` to your `.travis.yml` at `after_success`.
 
 ```yml
 # .travis.yml

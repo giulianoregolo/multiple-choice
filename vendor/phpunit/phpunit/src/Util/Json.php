@@ -17,7 +17,11 @@ final class Json
     /**
      * Prettify json string
      *
+     * @param string $json
+     *
      * @throws \PHPUnit\Framework\Exception
+     *
+     * @return string
      */
     public static function prettify(string $json): string
     {
@@ -68,7 +72,7 @@ final class Json
             // But EMPTY objects MUST remain empty objects. (Otherwise we will
             // re-encode it as a JSON array rather than a JSON object.)
             // See #2919.
-            if (\is_object($json) && \count((array) $json) > 0) {
+            if (\is_object($json) && count((array) $json) > 0) {
                 $json = (array) $json;
             } else {
                 return;
