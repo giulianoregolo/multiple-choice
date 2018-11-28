@@ -4,7 +4,7 @@ namespace Multiplechoice;
 
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Parser;
-require_once  '../vendor/autoload.php';
+require_once  './vendor/autoload.php';
 
 class Multiplechoice{
     protected $preguntas = [];
@@ -17,7 +17,7 @@ class Multiplechoice{
 
     public function __construct($cant,$test) {   
         $this->cant = $cant;
-        $this->yaml = Yaml::parseFile('../ejemplo/preguntas.yml');
+        $this->yaml = Yaml::parseFile('./ejemplo/preguntas.yml');
         $this->yaml = $this->yaml['preguntas'];
         $this->cantTemas = $test;
         $contador = 0;
@@ -41,7 +41,7 @@ class Multiplechoice{
 		$loader = new \Twig_Loader_Filesystem('../templates');
 		$twig = new \Twig_Environment($loader);
 		$templateAlumn = $twig->load('../templates/alumno.html');
-		file_put_contents('../evaluaciones/evaluacionTema'.$tema.'.html', $templateAlumn->render(array('preguntas' => $this->preguntasExamen, 'tema' => $tema)));
+		file_put_contents('../evaluaciones/evaluacionTema.html', $templateAlumn->render(array('preguntas' => $this->preguntasExamen, 'tema' => $tema)));
     }
     
 }
