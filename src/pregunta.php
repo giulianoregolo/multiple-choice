@@ -33,26 +33,26 @@ class pregunta{
     }
 
     public function ningunaoTodasAnteriores(){
-        if(is_null($this->respuesta_incorrectas)){
+        if(count($this->respuesta_incorrectas) == 0){
             $this->respuesta_incorrectas = $this->respuestas_correcta;
             $this->respuestas_correcta = [];
             if($this->ocultarNingunatodasAnteriores==false){
-                $this->respuesta_incorrectas = array_push($this->respuesta_incorrectas ,"Ninguna de las anteriores");
-                array_push($this->opcionesExamen ,"Ninguna de las anteriores");
+                array_push($this->respuesta_incorrectas ,'Ninguna de las anteriores');
+                array_push($this->opcionesExamen ,'Ninguna de las anteriores');
             }   
             if($this->ocultartodasAnteriores ==false){
-                $this->respuestas_correcta[1] = "Todas las anteriores";
-                array_push($this->opcionesExamen,"Todas las anteriores");
+                $this->respuestas_correcta[1] = 'Todas las anteriores';
+               array_push($this->opcionesExamen,'Todas las anteriores');
             } 
         }
-        if(is_null($this->respuestas_correcta)){
-            if($this->ocultarNingunatodasAnteriores==false){
-                $this->respuestas_correcta[1]= "Ninguna de las anteriores";
-                array_push($this->opcionesExamen,"Todas las anteriores");
-            } 
+        if(count($this->respuestas_correcta) == 0){
             if($this->ocultartodasAnteriores==false){
-                array_push($this->respuesta_incorrectas,"Todas las anteriores");
-                array_push($this->opcionesExamen,"Todas las anteriores");
+                array_push($this->respuesta_incorrectas,'Todas las anteriores');
+                array_push($this->opcionesExamen,'Todas las anteriores');
+            } 
+            if($this->ocultarNingunatodasAnteriores==false){
+                $this->respuestas_correcta[1]= 'Ninguna de las anteriores';
+                array_push($this->opcionesExamen,'Ninguna de las anteriores');
             } 
         }
     }
