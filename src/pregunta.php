@@ -11,6 +11,7 @@ class pregunta{
     protected $respuesta_incorrectas;
     protected $respuestas_correcta;
     protected $opcionesExamen = [];
+    protected $letraCorrecta;
     protected $abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'];
 
 
@@ -25,9 +26,12 @@ class pregunta{
             $this->ocultarNingunatodasAnteriores = true;
         }
         $this->opciones();
+        $this->letraCorrecta = $this->getCorrectas();
+
     }
 
     public function opciones(){
+
         $this->opcionesExamen = array_merge($this->respuestas_correcta,$this->respuesta_incorrectas);
         shuffle($this->opcionesExamen);
         $this->ningunaoTodasAnteriores();
@@ -38,7 +42,7 @@ class pregunta{
             $this->respuesta_incorrectas = $this->respuestas_correcta;
             $this->respuestas_correcta = [];
             if($this->ocultartodasAnteriores ==false){
-                $this->respuestas_correcta[1] = 'Todas las anteriores';
+                $this->respuestas_correcta= 'Todas las anteriores';
                array_push($this->opcionesExamen,'Todas las anteriores');
             } 
             if($this->ocultarNingunatodasAnteriores==false){
@@ -52,7 +56,7 @@ class pregunta{
                 array_push($this->opcionesExamen,'Todas las anteriores');
             } 
             if($this->ocultarNingunatodasAnteriores==false){
-                $this->respuestas_correcta[1]= 'Ninguna de las anteriores';
+                $this->respuestas_correcta= 'Ninguna de las anteriores';
                 array_push($this->opcionesExamen,'Ninguna de las anteriores');
             } 
         }
@@ -69,5 +73,8 @@ class pregunta{
 
     public function optenerpreg(){
         return $this->opcionesExamen;
+    }
+    public function obtenerletra(){
+        return $this->letraCorrecta;
     }
 }
