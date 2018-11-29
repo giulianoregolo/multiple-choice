@@ -1,5 +1,5 @@
 <?php
-namespace Multiplechocie;
+namespace MultipleChoice;
 
 use Symfony\Component\Yaml\Yaml;
 use PHPUnit\Framework\TestCase;

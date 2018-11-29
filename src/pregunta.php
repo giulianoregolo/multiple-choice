@@ -1,6 +1,6 @@
 <?php
 
-namespace Multiplechoice;
+namespace MultipleChoice;
 
 
 class pregunta{

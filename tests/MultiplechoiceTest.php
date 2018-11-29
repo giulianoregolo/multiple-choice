@@ -1,5 +1,5 @@
 <?php
-namespace Multiplechocie;
+namespace MultipleChoice;
 
 use PHPUnit\Framework\TestCase;
 

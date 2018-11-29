@@ -6,7 +6,7 @@ use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Parser;
 require_once  './vendor/autoload.php';
 
-class Multiplechoice{
+class MultipleChoice{
     protected $preguntas = [];
     protected $cant;
     protected $cantTemas;

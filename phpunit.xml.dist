@@ -11,7 +11,7 @@
          syntaxCheck="false"
          bootstrap="tests/bootstrap.php">
     <testsuites>
-        <testsuite name="TrabajoTarjeta Type Test Suite">
+        <testsuite name="MultipleChoice Type Test Suite">
             <directory>./tests</directory>
         </testsuite>
     </testsuites>
