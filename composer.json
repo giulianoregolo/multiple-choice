@@ -3,13 +3,13 @@
         "phpunit/phpunit": "7",
         "satooshi/php-coveralls": "^2.0"
     },
-    "require":{
-        "symfony/yaml": "^4.1",
-        "twig/twig": "^2.0"
-    },
     "autoload": {
         "psr-4": {
             "MultipleChoice\\": "src"
         }    
+    },
+    "require":{
+        "symfony/yaml": "^4.1",
+        "twig/twig": "^2.0"
     }
 }
