@@ -1,6 +1,6 @@
 <?php
 
-namespace Multiplechoice;
+namespace MultipleChoice;
 
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Parser;
