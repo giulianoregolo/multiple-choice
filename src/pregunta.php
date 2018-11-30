@@ -80,3 +80,7 @@ class pregunta{
         return $this->letraCorrecta;
     }
 }
+
+/**
+ * Commit
+ */
