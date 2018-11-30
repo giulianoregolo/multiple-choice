@@ -6,7 +6,6 @@ scrutinizer:[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/NahuelBlan
 coveralls:[![Coverage Status](https://coveralls.io/repos/github/NahuelBlando/multiple-choice/badge.svg)](https://coveralls.io/github/NahuelBlando/multiple-choice)
 
 Como se utiliza:
-El programa abre una pagina web en la cual aparece un boton que te genera un examen y abre directamente en la pestaña del examen.
+Para poder ejecutar el programa es necesario hacerlo desde la consola de windows. Esto se hace buscando cmd en el buscador en el menu de inicio de windows. Luego se debe ejecutar el comando "php (direcion del archivo)index.php" o tambien, posicionandose dentro de la terminal, en la carpeta en la que se encuntra en archivo "index.php" y ejecutar el comando "php index.php".
 Limitaciones:
-No genera dos temas y tampoco genera las respuestas aunque estan hechas las funciones para poder generarlo.
-las preguntas del tema no están puestas al azar, es decir estan ordenadas segun la base dee datos.
+No genera dos temas.
