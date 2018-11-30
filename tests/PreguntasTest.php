@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 
 class PreguntasTest extends TestCase {
 
+		/**
+		 * Comprueba que la funcion mostrarDesc devuelve la descripción de una pregunta
+		 */
     public function testdescripcion(){
 			$yaml = Yaml::parseFile('tests/yamltest.yml');
 			$yaml = $yaml['preguntas'];
@@ -13,6 +16,9 @@ class PreguntasTest extends TestCase {
 			$this->assertEquals($pregunta->mostrarDesc(), "El término pixel hace referencia a");
 		}
 		
+		/**
+		 * Comprueba que la funcion obtenerPreg devuelve todas las posibles respuestas de una pregunta
+		 */
 		public function testobtenerpreg () {
 			$yaml = Yaml::parseFile( 'tests/yamltest.yml' );
 			$yaml = $yaml['preguntas'];
