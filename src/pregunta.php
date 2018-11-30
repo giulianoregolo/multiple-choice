@@ -63,9 +63,6 @@ class pregunta{
     }
 
     public function getCorrectas(){
-        echo gettype($this->respuestas_correcta);
-        echo "\n";
-        echo "\n";
         $letras = $this->abc[array_search($this->respuestas_correcta[0], $this->opcionesExamen)];
         return $letras;
 	}
