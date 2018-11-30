@@ -10,7 +10,7 @@ class MultiplechoiceTest extends TestCase {
     }
     public function testRecortarYAML(){
         $prueba = new Multiplechoice(12,1);
-        $cant = count($prueba->obteneryaml);
+        $cant = count($prueba->obteneryaml());
         $this->assertEquals($cant,12);
     }
 

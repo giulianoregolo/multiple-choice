@@ -9,7 +9,7 @@ class pregunta{
     protected $ocultartodasAnteriores =false ;
     protected $ocultarNingunatodasAnteriores = false;
     protected $respuesta_incorrectas;
-    protected $respuestas_correcta;
+    protected $respuestas_correcta = [];
     protected $opcionesExamen = [];
     protected $letraCorrecta;
     protected $abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'];
@@ -42,7 +42,7 @@ class pregunta{
             $this->respuesta_incorrectas = $this->respuestas_correcta;
             $this->respuestas_correcta = [];
             if($this->ocultartodasAnteriores ==false){
-                $this->respuestas_correcta= 'Todas las anteriores';
+                $this->respuestas_correcta [0]= 'Todas las anteriores';
                array_push($this->opcionesExamen,'Todas las anteriores');
             } 
             if($this->ocultarNingunatodasAnteriores==false){
@@ -56,15 +56,17 @@ class pregunta{
                 array_push($this->opcionesExamen,'Todas las anteriores');
             } 
             if($this->ocultarNingunatodasAnteriores==false){
-                $this->respuestas_correcta= 'Ninguna de las anteriores';
+                $this->respuestas_correcta [0] = 'Ninguna de las anteriores';
                 array_push($this->opcionesExamen,'Ninguna de las anteriores');
             } 
         }
     }
 
     public function getCorrectas(){
-        $letras = $this->abc[array_search($this->respuestas_correcta, $this->opcionesExamen)];
-		return $letras;
+        echo gettype($this->respuestas_correcta);
+        echo "\n";
+        $letras = $this->abc[array_search($this->respuestas_correcta[0], $this->opcionesExamen)];
+        return $letras;
 	}
 
     public function mostrarDesc(){
