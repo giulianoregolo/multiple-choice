@@ -1,5 +1,5 @@
 # multiple-choice
-travis: https://travis-ci.org/NahuelBlando/multiple-choice.svg?branch=master
+travis: [![Build Status](https://travis-ci.org/NahuelBlando/multiple-choice.svg?branch=master)](https://travis-ci.org/NahuelBlando/multiple-choice)
 
 scrutinizer:[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/NahuelBlando/multiple-choice/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/NahuelBlando/multiple-choice/?branch=master)
 
